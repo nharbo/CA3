@@ -1,0 +1,57 @@
+<h1>Using the Seed</h1>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+
+<div >
+  <uib-accordion>
+      <uib-accordion-group heading="Getting the Seed" >
+        <ul>
+          <li>Github XXXXXXXX</li>
+          <li>To set up all dependencies for the FronteEnd project (mostly client side test tools) you need to install <a href="https://nodejs.org/en/download/">NodeJS</a><br/>
+            Whith NodeJS installed, Right Click the Project and select "resolve project dependencies"</li>
+        </ul>
+      </uib-accordion-group>
+    <uib-accordion-group is-open="status.isFirstOpen" >
+      <uib-accordion-heading>
+        Architecture
+        <img src="view4/image/projects.PNG">
+      </uib-accordion-heading>
+     
+      This Seed provides a Java JAX RS Backend and an Angular Frontend in two separate NetBeans Projects
+    
+      <div class="col-md-8">
+      <ul>
+        <li>All Backend Code should be placed in Backend Project</li>
+        <li>All Frontend Code should be placed in the Frontend Project, that is DO NOT put any content into the "Web Pages" folder of the Backend Project</li>
+      </ul>
+      When you execute the code (right click AngSeedProject and select run) all content of the Frontend Project will be copied into the "Web Pages" folder.
+      </div>
+      <div class="col-md-4">
+      <img src='view4/image/architecture.PNG' style="width: 100%;">
+      </div>
+    </uib-accordion-group>
+    
+     <uib-accordion-group >
+       <uib-accordion-heading>
+         <img src="view4/image/seedServer.PNG">
+         Backend Architecture
+      </uib-accordion-heading>
+      This should come as no surprise to you. Its a basic NetBeans Web Project with a few REST Services Buildt in + support for Token-based Security
+      <br/>
+      Don't place any front-end code in this project, this is what the Client project is for 
+      (content from the Clients app-folder will we copied into the Web Pages folder when you deploy this project)
+    </uib-accordion-group>
+    
+    <uib-accordion-group heading="Security Features in the Seed" >
+      Security
+    </uib-accordion-group>
+    <uib-accordion-group heading="Adding new files">
+      This content is straight in the template.
+    </uib-accordion-group>
+    <uib-accordion-group heading="Testing" >
+      sdaf
+    </uib-accordion-group>
+    <uib-accordion-group heading="Removing Unnecessary Page/Code" >
+      aafasf
+    </uib-accordion-group>
+  </uib-accordion>
+</div>
