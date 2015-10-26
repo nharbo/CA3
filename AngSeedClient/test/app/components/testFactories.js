@@ -14,7 +14,7 @@ describe('myApp.factories', function () {
   });
 
 
-  describe('XXXFactory', function () {
+  describe('Your Own Factory', function () {
 
   });
 });
