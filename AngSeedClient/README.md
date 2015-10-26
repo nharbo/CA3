@@ -4,8 +4,7 @@ This seed is made for computer science classes at https://www.cphbusiness.dk
 It is NOT meant for production.
 
 ## Contact
-
-For more information on AngularJS please check out http://angularjs.org/
+Lars Mortensen lam@cphbuisiness.dk
 
 [git]: http://git-scm.com/
 [bower]: http://bower.io
