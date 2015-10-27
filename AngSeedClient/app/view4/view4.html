@@ -161,6 +161,36 @@
           </ol>
           
       </uib-accordion-group>
+      <uib-accordion-group heading="Exercises" >
+          <h3>Make a new page</h3>
+          <p>Get to know the internals of this seed. Look at the "Adding new files" section.</p>
+          <p>When you have done that, make a view 5, that has a page and JS just like the other 4 views.</p>
+          <h3>Make a database to persist the users</h3>
+          <p>This seed does not have any database attached to it. If you look at the "UserFacade.java" you can see that right now, the users are stored in a Hashmap.</p>
+          <p>Your task is to:</p>
+          <ul>
+              <li>Make User.java an entity by introducing the proper annotations</li>
+              <li>Make a database</li>
+              <li>Use the wizard to make the persistence.xml</li>
+              <li></li>
+          </ul>
+          <p>Don't care about the security right now, we will deal with that in the next point:</p>
+          <h3>Make the password hashed and salted</h3>
+          <p>Having plain-text passwords in your database is the worst rookie mistake you can make (But even <a href="http://arstechnica.com/tech-policy/2011/06/sony-hacked-yet-again-plaintext-passwords-posted/">Sony</a> and  is a rookie)</p>
+          <p>If you want to read a little bit more about hashing and why it is important, then <a href="https://crackstation.net/hashing-security.htm">Crackstation</a> got you covered</p>
+          <p>For a better rant: <a href="http://plaintextoffenders.com/faq/devs">Plaintextoffenders</a> also has a good FAQ </p>
+          <h5>Tasks</h5>
+          <ul>
+              <li>Download the PasswordHash java file from the <a href="https://crackstation.net/source/password-hashing/PasswordHash.java">Crackstation website</a></li>
+              <li>Put it in the security package</li>
+              <li>Before persisting, call PasswordHash.createHash(password);</li>
+              <li>Store the String you get in return</li>
+              <li>Whenever a user tries to log in, evaluate the password sent with the hashed and salted one stored in the database by issuring: </li>
+              <li>PasswordHash.validatePassword(password, wholeHash)</li>
+          </ul>
+          <h3>Add another role</h3>
+          <p>Make a new role for your new page: members. Members needs to have access to both view2 and your newly created view5</p>
+      </uib-accordion-group>
 
   </uib-accordion>
 </div>
