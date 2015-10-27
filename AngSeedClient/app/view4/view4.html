@@ -136,6 +136,31 @@
       <p>If your test-code is not being recognized, open the <em>karma.conf</em>-file to see how to point to tests and the things we test </p>
 
     </uib-accordion-group>
+      <uib-accordion-group heading="Backend Testing" >
+          <h4>Introduction</h4>
+          <p>The seed ships with an embedded HTTP and Servlet container, called: <img src="view4/image/Jetty_logo.png" alt="" width="100px"/></p>
+          <p>Jetty is designed to be a software component that can be instantiated and used in a Java program just like any POJO. </p>
+          <p>In this context, we use the Jetty server for running our backend REST tests.</p>
+          <h4>Installing</h4>
+          <p>Jetty Jar file can be found on these links: (this seed uses 9.2)<a href=""></a></p>
+          <ul>
+              <li><b><a href="http://central.maven.org/maven2/org/eclipse/jetty/aggregate/jetty-all/9.3.5.v20151012/">> 9.3: </a></b> Can be used if you are running your code with Java version 8 and onwards</li>
+              <li><b><a href="http://central.maven.org/maven2/org/eclipse/jetty/aggregate/jetty-all/9.2.9.v20150224/">< 9.2:</a></b> Can be used if you are running your code with Java version 7 and prior</li>
+          </ul>
+          <p>We include Jetty in the "Compile Test" section of the library properties, in order for the server not to be included in the final build.</p>
+          <img src="view4/image/backendTestProperties.png" width="50%"/>
+          <h4>Testing</h4>
+          <p>In order for Jetty to work we need to start the server before we use our jUnit tests</p>
+          <img src="view4/image/backendTest.png" alt="" width="80%"/>
+          <ol class="list"> 
+              <li>Creates a new server instance with the port number 8082</li>
+              <li>Make a context where the servlet is served from (here /api) and attach the ServletHolder described in 3.</li>
+              <li>Creates a ServletHolder that utilizes the Jersy library for handling servlets</li>
+              <li>Attach the ContextHandler to the server and starts the server.</li>
+              <li>In the tear down, then shut down the server, and wait for all the threads are terminated before returning</li>
+          </ol>
+          
+      </uib-accordion-group>
 
   </uib-accordion>
 </div>
