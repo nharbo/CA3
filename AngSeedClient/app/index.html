@@ -36,7 +36,7 @@
   <body ng-app="myApp">
 
     <div class="container"  >
-      <nav class="navbar navbar-fixed-top " role="navigation">
+      <nav class="navbar navbar-fixed-top " role="navigation" ng-controller="AppLoginCtrl">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -54,7 +54,7 @@
               <li><a href="#/view3">Page for Admins</a></li>
               <li><a href="#/view4">Using the Seed</a></li>
             </ul>
-            <div ng-controller="AppLoginCtrl">
+            <div>
             <form class="navbar-form navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >
               <div class="form-group">
                 <input type="text" style="width:10em;" placeholder="User name" class="form-control"

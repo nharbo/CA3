@@ -48,10 +48,10 @@ angular.module('myApp.security', [])
               var roles = profile.roles.split(",");
               roles.forEach(function (role) {
                 if(role === "Admin"){
-                   $scope.isAdmin ="Admin";
+                   $scope.isAdmin =true;
                  }
                 if(role === "User"){
-                   $scope.isUser ="User";
+                   $scope.isUser = true;
                  }
               });
               $scope.error = null;
@@ -61,7 +61,9 @@ angular.module('myApp.security', [])
               // Erase the token if the user fails to log in
               delete $window.sessionStorage.token;
               $scope.isAuthenticated = false;
-              $scope.isAdmin = $scope.isUser = $scope.username = "";
+              $scope.isAdmin = false;
+              $scope.isUser = false;
+              $scope.username = "";
               $scope.error = data.error;
               //$scope.logout();  //Clears an eventual error message from timeout on the inner view
             });

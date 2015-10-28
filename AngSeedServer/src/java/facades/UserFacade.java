@@ -13,15 +13,15 @@ public class UserFacade {
     //Test Users
     User user = new User("user","test");
     user.AddRole("User");
-    users.put("user",user );
+    users.put(user.getUserName(),user );
     User admin = new User("admin","test");
     admin.AddRole("Admin");
-    users.put("admin",admin);
+    users.put(admin.getUserName(),admin);
     
     User both = new User("user_admin","test");
     both.AddRole("User");
     both.AddRole("Admin");
-    users.put("user_admin",both );
+    users.put(both.getUserName(),both );
   }
   
   public User getUserByUserId(String id){
