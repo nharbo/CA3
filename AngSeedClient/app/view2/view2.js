@@ -13,11 +13,10 @@ angular.module('myApp.view2', ['ngRoute'])
           $http({
             method: 'GET',
             url: 'api/demouser'
-          }).then(function successCallback(response) {
-            $scope.data = response.data.message;
-          }, function errorCallback(response) {
-            $scope.error = data.error;
+          }).then(function successCallback(res) {
+            $scope.data = res.data.message;
+          }, function errorCallback(res) {
+            $scope.error = res.status + ": "+ res.data.statusText;
           });
-
 
         });

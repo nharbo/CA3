@@ -11,13 +11,12 @@ describe('myApp.view2 view2Ctrl', function () {
     scope = $rootScope.$new();
     ctrl = $controller('View2Ctrl', {$scope: scope});
   }));
-  
-  //describe('view2 controller', function () {
-    it('Should fetch a test message', function () {
-      expect(scope.info).toBeUndefined();
-      httpBackendMock.flush();
-      expect(scope.data).toEqual("Test Message Mock");
-    //});
+
+  it('Should fetch a test message', function () {
+    expect(scope.data).toBeUndefined();
+    httpBackendMock.flush();
+    expect(scope.data).toEqual("Test Message Mock");
   });
+
 });
 
