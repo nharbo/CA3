@@ -172,7 +172,7 @@
               <li>Make User.java an entity by introducing the proper annotations</li>
               <li>Make a database</li>
               <li>Use the wizard to make the persistence.xml</li>
-              <li></li>
+              <li>Make your facade use the newly created database instead of the HashMap</li>
           </ul>
           <p>Don't care about the security right now, we will deal with that in the next point:</p>
           <h3>Make the password hashed and salted</h3>
@@ -183,6 +183,7 @@
           <ul>
               <li>Download the PasswordHash java file from the <a href="https://crackstation.net/source/password-hashing/PasswordHash.java">Crackstation website</a></li>
               <li>Put it in the security package</li>
+              <li>Check that it has the right package on the top</li>
               <li>Before persisting, call PasswordHash.createHash(password);</li>
               <li>Store the String you get in return</li>
               <li>Whenever a user tries to log in, evaluate the password sent with the hashed and salted one stored in the database by issuring: </li>
