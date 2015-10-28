@@ -136,6 +136,61 @@
       <p>If your test-code is not being recognized, open the <em>karma.conf</em>-file to see how to point to tests and the things we test </p>
 
     </uib-accordion-group>
+      <uib-accordion-group heading="Backend Testing" >
+          <h4>Introduction</h4>
+          <p>The seed ships with an embedded HTTP and Servlet container, called: <img src="view4/image/Jetty_logo.png" alt="" width="100px"/></p>
+          <p>Jetty is designed to be a software component that can be instantiated and used in a Java program just like any POJO. </p>
+          <p>In this context, we use the Jetty server for running our backend REST tests.</p>
+          <h4>Installing</h4>
+          <p>Jetty Jar file can be found on these links: (this seed uses 9.2)<a href=""></a></p>
+          <ul>
+              <li><b><a href="http://central.maven.org/maven2/org/eclipse/jetty/aggregate/jetty-all/9.3.5.v20151012/">> 9.3: </a></b> Can be used if you are running your code with Java version 8 and onwards</li>
+              <li><b><a href="http://central.maven.org/maven2/org/eclipse/jetty/aggregate/jetty-all/9.2.9.v20150224/">< 9.2:</a></b> Can be used if you are running your code with Java version 7 and prior</li>
+          </ul>
+          <p>We include Jetty in the "Compile Test" section of the library properties, in order for the server not to be included in the final build.</p>
+          <img src="view4/image/backendTestProperties.png" width="50%"/>
+          <h4>Testing</h4>
+          <p>In order for Jetty to work we need to start the server before we use our jUnit tests</p>
+          <img src="view4/image/backendTest.png" alt="" width="80%"/>
+          <ol class="list"> 
+              <li>Creates a new server instance with the port number 8082</li>
+              <li>Make a context where the servlet is served from (here /api) and attach the ServletHolder described in 3.</li>
+              <li>Creates a ServletHolder that utilizes the Jersy library for handling servlets</li>
+              <li>Attach the ContextHandler to the server and starts the server.</li>
+              <li>In the tear down, then shut down the server, and wait for all the threads are terminated before returning</li>
+          </ol>
+          
+      </uib-accordion-group>
+      <uib-accordion-group heading="Exercises" >
+          <h3>Make a new page</h3>
+          <p>Get to know the internals of this seed. Look at the "Adding new files" section.</p>
+          <p>When you have done that, make a view 5, that has a page and JS just like the other 4 views.</p>
+          <h3>Make a database to persist the users</h3>
+          <p>This seed does not have any database attached to it. If you look at the "UserFacade.java" you can see that right now, the users are stored in a Hashmap.</p>
+          <p>Your task is to:</p>
+          <ul>
+              <li>Make User.java an entity by introducing the proper annotations</li>
+              <li>Make a database</li>
+              <li>Use the wizard to make the persistence.xml</li>
+              <li></li>
+          </ul>
+          <p>Don't care about the security right now, we will deal with that in the next point:</p>
+          <h3>Make the password hashed and salted</h3>
+          <p>Having plain-text passwords in your database is the worst rookie mistake you can make (But even <a href="http://arstechnica.com/tech-policy/2011/06/sony-hacked-yet-again-plaintext-passwords-posted/">Sony</a> and  is a rookie)</p>
+          <p>If you want to read a little bit more about hashing and why it is important, then <a href="https://crackstation.net/hashing-security.htm">Crackstation</a> got you covered</p>
+          <p>For a better rant: <a href="http://plaintextoffenders.com/faq/devs">Plaintextoffenders</a> also has a good FAQ </p>
+          <h5>Tasks</h5>
+          <ul>
+              <li>Download the PasswordHash java file from the <a href="https://crackstation.net/source/password-hashing/PasswordHash.java">Crackstation website</a></li>
+              <li>Put it in the security package</li>
+              <li>Before persisting, call PasswordHash.createHash(password);</li>
+              <li>Store the String you get in return</li>
+              <li>Whenever a user tries to log in, evaluate the password sent with the hashed and salted one stored in the database by issuring: </li>
+              <li>PasswordHash.validatePassword(password, wholeHash)</li>
+          </ul>
+          <h3>Add another role</h3>
+          <p>Make a new role for your new page: members. Members needs to have access to both view2 and your newly created view5</p>
+      </uib-accordion-group>
 
   </uib-accordion>
 </div>
