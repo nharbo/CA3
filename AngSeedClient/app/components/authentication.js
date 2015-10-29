@@ -120,7 +120,7 @@ angular.module('myApp.security', [])
           $rootScope.error += " You are are not Authenticated - did you log on to the system"
         }
         else{
-           $rootScope.error = + err.error.message;
+           $rootScope.error +=  err.error.message;
         }
         if (err.error.code === 403) {
          
