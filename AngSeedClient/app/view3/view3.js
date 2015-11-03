@@ -9,34 +9,18 @@ angular.module('myApp.view3', ['ngRoute'])
                 });
             }])
 
-        .controller('View3Ctrl', ["MyFactory", function ($http, MyFactory) {
+        .controller('View3Ctrl', function ($http) {
 
             var self = this;
 
-            self.company = MyFactory.getCompany();
+            $http.get('http://localhost:8080/AngSeedServer/api/demouser/getcomp/name/lego/dk')
+                    .success(function (response) {
+//                        console.log(response);
+                        self.data = response;
+                    })
+                    .error(function (response) {
 
+                    });
 
-        }])
-
-        .factory('MyFactory', function () {
-
-            var getCompany = function () {
-                
-//                var name = input.name;
-
-                $http.get('api/demouser/name/lego/dk')
-                        .success(function (response) {
-                            return response.data;
-//                            this.data = data;
-                        })
-                        .error(function (response) {
-
-                        });
-            };
-
-            return {
-                getCompany: getCompany
-
-            };
 
         });
