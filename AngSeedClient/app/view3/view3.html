@@ -1,5 +1,42 @@
-<h3>This is the partial for view 3.</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
+<h3>Company info</h3>
+
+<div id="searchoptions">
+    <form id="search">
+        <label>Søgetekst</label><input type="text" name="searchtext" value="" placeholder="Påkrævet" /><br/>
+        <label>Søgemulighed</label><select name="searchoption">
+            <option></option>
+        </select><br/>
+        <label>Land</label><select name="country">
+            <option></option>
+        </select><br/>
+        <label>Version</label><select name="version">
+            <option></option>
+        </select><br/>
+        <input type="submit" value="Slå op" />
+    </form>
 </div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>CVR</th>
+            <th>Navn på virksomhed</th>
+            <th>Addresse</th>
+            <th>By</th>
+            <th>Postnummer</th>
+            <th>Telefonnummer</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in ctrl.company">
+            <td>{{data.vat}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.zipcode}}</td>
+            <td>{{data.phone}}</td>
+            <td>{{data.email}}</td>
+        </tr>
+    </tbody>
+</table>
