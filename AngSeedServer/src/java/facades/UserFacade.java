@@ -16,9 +16,9 @@ public class UserFacade {
     static EntityManager em = emf.createEntityManager();
 
     
-    public static void main(String[] args) {
-        insertUsers();
-    }
+//    public static void main(String[] args) {
+//        insertUsers();
+//    }
     public static void insertUsers() {
         //Test Users
 
