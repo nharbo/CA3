@@ -2,13 +2,24 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+
+@Entity
 public class User {
   
   private String password;  //Pleeeeease dont store me in plain text
+  
+   @Id
   private String userName;
+  
+  @ElementCollection
   List<String> roles = new ArrayList();
 
+  public User(){}
+  
   public User(String userName, String password) {
     this.userName = userName;
     this.password = password;

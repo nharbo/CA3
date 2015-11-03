@@ -16,4 +16,11 @@ public class User {
     return "{\"message\" : \"This message was delivered via a REST call accesible by only authenticated USERS\"}"; 
   }
  
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("/getcomp/{name}")
+  public String getCompany(){
+      
+      return "";
+  }
 }
