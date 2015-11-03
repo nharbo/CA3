@@ -1,48 +1,57 @@
 <div ng-controller="View3Ctrl as ctrl">
-<h3>Company info</h3>
+    <h3>Company info</h3>
 
-<div id="searchoptions">
-    <form id="search">
-        <label>Søgetekst</label><input type="text" name="searchtext" value="" placeholder="Påkrævet" /><br/>
-        <label>Søgemulighed</label><select name="searchoption">
-            <option></option>
-        </select><br/>
-        <label>Land</label><select name="country">
-            <option></option>
-        </select><br/>
-        <label>Version</label><select name="version">
-            <option></option>
-        </select><br/>
-        <input type="submit" value="Slå op" />
-    </form>
-</div>
+    <div class="col-md-3" style="border-radius: 5px;padding: 1em;">
+        <form id="search" class="well" style="font-size: small">
+            <label>Søgetekst</label><input type="text" name="searchtext" value="" placeholder="Påkrævet" /><br/>
+            <label>Søgemulighed</label><select name="searchoption">
+                <option></option>
+            </select><br/>
+            <label>Land</label><select name="country">
+                <option></option>
+            </select><br/>
+            <label>Version</label><select name="version">
+                <option></option>
+            </select><br/>
+            <input type="submit" value="Slå op" />
+        </form>
+    </div>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>CVR</th>
-            <th>Navn på virksomhed</th>
-            <th>Addresse</th>
-            <th>By</th>
-            <th>Postnummer</th>
-            <th>Telefonnummer</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="company in ctrl.data">
-            <td>{{company.vat}}</td>
-            <td>{{ctrl.data.name}}</td>
-<!--            <td>{{company.address}}</td>
-            <td>{{company.city}}</td>
-            <td>{{company.zipcode}}</td>
-            <td>{{company.phone}}</td>
-            <td>{{company.email}}</td>-->
-        </tr>
-    </tbody>
-</table>
+    <br/>
+    <br/>
 
-<div>
-    {{ctrl.data.name}}
-</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>CVR</td>
+                <td>{{ctrl.company("dk").vat}}</td>
+            </tr>
+<!--            <tr>
+                <td>Navn</td>
+                <td>{{ctrl.data.name}}</td>
+            </tr>
+            <tr>
+                <td>Addresse</td>
+                <td>{{ctrl.data.address}}</td>
+            </tr>
+            <tr>
+                <td>By</td>
+                <td>{{ctrl.data.city}}</td>
+            </tr>
+            <tr>
+                <td>Postnummer</td>
+                <td>{{ctrl.data.zipcode}}</td>
+            </tr>
+            <tr>
+                <td>Telefon</td>
+                <td>{{ctrl.data.phone}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ctrl.data.email}}</td>
+            </tr>-->
+        </tbody>
+    </table>
+
+
 </div>
