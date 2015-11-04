@@ -48,7 +48,7 @@ public class unknown {
       
       uf.createUser(name, password);
       
-      return "You succesfully Registered as" + name;
+      return "You succesfully Registered as " + name;
   }
 
 
