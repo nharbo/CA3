@@ -1,5 +1,4 @@
-<div ng-controller="View3Ctrl
-            as ctrl">
+<div ng-controller="View3Ctrl as ctrl">
     <h3>Company info</h3>
 
     <div class="col-md-3" style="border-radius: 5px;padding: 1em;">
@@ -23,10 +22,13 @@
 
     <br/>
     <br/>
+    <!--Denne besked vises, hvis http-requestet giver error-->
     <br/><h1>{{ctrl.errormessage}}</h1>
 
+    <!--Viser kun nedenstående, når der er klikket på søgeknappen-->
     <div ng-show="ctrl.buttonClicked">
 
+        <!--Viser det overordnede firma-->
         <table class="table" >
             <tbody>
                 <tr>
@@ -61,6 +63,7 @@
 
         </table>
 
+        <!--Looper igennem firmaernes underfirmaer, og lister dem-->
         <uib-accordion ng-repeat="response in ctrl.info.productionunits">
 
             <uib-accordion-group heading="{{response.name}}">

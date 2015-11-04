@@ -16,6 +16,7 @@ angular.module('myApp.view3', ['ngRoute'])
 //            self.test = "test!!";
             self.buttonClicked = false;
 
+            //Dette sker, når søgeknappen klikkes (ng-click)
             self.searchbutton = function () {
 //                alert("in function");
                 var searchfield = self.searchfield;
