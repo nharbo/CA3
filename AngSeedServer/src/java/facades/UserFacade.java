@@ -4,14 +4,20 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import deploy.DeploymentConfiguration;
 import entity.User;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import security.PasswordHash;
 
 public class UserFacade {
 
@@ -19,7 +25,7 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
 //    public static void main(String[] args) {
 //        insertUsers();
@@ -30,15 +36,25 @@ public class UserFacade {
 
     public void createUser(String name, String password) {
 
-        EntityManager em = emf.createEntityManager();
+        try {
+            EntityManager em = emf.createEntityManager();
 
-        User newUser = new User(name, password);
-        newUser.AddRole("User");
+            User newUser = new User(name, password);
+            newUser.AddRole("User");
 
-        em.getTransaction().begin();
-        em.persist(newUser);
-        em.getTransaction().commit();
-        em.close();
+            String hashPwd = PasswordHash.createHash(newUser.getPassword());
+            newUser.setPassword(hashPwd);
+
+            em.getTransaction().begin();
+            em.persist(newUser);
+            em.getTransaction().commit();
+            em.close();
+
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static void insertUsers() {
@@ -89,10 +105,17 @@ public class UserFacade {
     /*
      Return the Roles if users could be authenticated, otherwise null
      */
-    public List<String> authenticateUser(String userName, String password) {
+    public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         User user = getUserByUserId(userName);
-        return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
+//        String wholeHash = PasswordHash.createHash(password);
+        if (PasswordHash.validatePassword(password, user.getPassword())) {
+            return user.getRoles();
+
+        } else {
+            return null;
+
+        }
     }
 
     public static String getAllUsers() {
