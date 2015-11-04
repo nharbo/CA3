@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import deploy.DeploymentConfiguration;
 import entity.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -24,7 +25,7 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
 //    public static void main(String[] args) {
 //        insertUsers();
