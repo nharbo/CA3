@@ -25,11 +25,13 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
+//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-//    public static void main(String[] args) {
+//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 //        insertUsers();
 //    }
+    
     public UserFacade() {
 
     }
@@ -57,18 +59,21 @@ public class UserFacade {
         }
     }
 
-    public static void insertUsers() {
+    public static void insertUsers() throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         EntityManager em = emf.createEntityManager();
         //Test Users
 
-        User user = new User("user", "test");
+        String hashPwd = PasswordHash.createHash("test");
+        User user = new User("user", hashPwd);
         user.AddRole("User");
 
-        User admin = new User("admin", "test");
+        String hashPwd1 = PasswordHash.createHash("test");
+        User admin = new User("admin", hashPwd1);
         admin.AddRole("Admin");
 
-        User both = new User("user_admin", "test");
+        String hashPwd2 = PasswordHash.createHash("test");
+        User both = new User("user_admin", hashPwd2);
         both.AddRole("User");
         both.AddRole("Admin");
 
