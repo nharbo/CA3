@@ -10,17 +10,19 @@ angular.module('myApp.view6', ['ngRoute'])
 
         .controller('View6Ctrl', ['$http', '$scope', function ($http, $scope) {
 
-//                var createUserObj = {
-//                    username: $scope.usernameInput,
-//                    password: $scope.passwordInput
-//                };
+                var createUserObj = {
+                    username: $scope.usernameInput,
+                    password: $scope.passwordInput
+                };
 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8081/AngSeedServer/api/demouser/create' + "{" + $scope.usernameInput + "}" + "{" + $scope.passwordInput + "}"
+                    url: 'http://localhost:8081/AngSeedServer/api/demouser/create/'  + $scope.usernameInput + "/" + $scope.passwordInput
                 }).then(function successCallback(response) {
+                    alert (createUserObj);
                     $scope.returnMessage = response;
                 }, function errorCallback(response) {
                     alert("Failure message: " + JSON.stringify({reponse: response}));
+                    alert(createUserObj);
                 });
             }]);
