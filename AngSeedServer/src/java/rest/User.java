@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 
 @Path("demouser")
-//@RolesAllowed("User")
+@RolesAllowed("User")
 public class User {
     private static Gson gson = new Gson();
     private static final JsonParser parser = new JsonParser();
@@ -49,16 +50,5 @@ public class User {
         
       return jsonStr;
   }
-  
-  
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Path("/create/{name}/{password}")
-  public String createUser(@PathParam("name") String name, @PathParam("password") String password){
-      UserFacade uf = new UserFacade();
-      
-      uf.createUser(name, password);
-      
-      return "You succesfully Registered as" + name;
-  }
+
 }
