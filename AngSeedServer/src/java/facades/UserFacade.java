@@ -1,5 +1,8 @@
 package facades;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import entity.User;
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +10,11 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class UserFacade {
+    
+    private static Gson gson = new Gson();
 
     private final Map<String, User> users = new HashMap<>();
     
@@ -70,4 +76,16 @@ public class UserFacade {
         return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
     }
 
+    public static String getAllUsers() {
+        Query query = em.createNamedQuery("User.findAll");
+        List<User> list = query.getResultList();
+        JsonArray jsonArray = new JsonArray();
+        for (User user: list) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("username", user.getUserName());
+            jsonArray.add(jsonObject);
+        }
+        return gson.toJson(jsonArray);
+    }
+    
 }
