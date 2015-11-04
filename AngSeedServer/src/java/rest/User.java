@@ -54,11 +54,11 @@ public class User {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/create/{name}/{password}")
-  public void createUser(@PathParam("name") String name, @PathParam("password") String password){
+  public String createUser(@PathParam("name") String name, @PathParam("password") String password){
       UserFacade uf = new UserFacade();
       
       uf.createUser(name, password);
       
-      
+      return "You succesfully Registered as" + name;
   }
 }
