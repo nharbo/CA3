@@ -10,8 +10,24 @@ angular.module('myApp.view3', ['ngRoute'])
             }])
 
         .controller('View3Ctrl', function ($http) {
-
             var self = this;
+    
+            self.loggedIn = false;
+            
+
+            $http.get('api/demouser')
+                    .success(function (data, status, headers, config) {
+                        
+                        self.data = data.message;
+                        if(data.message != "401: You are are not Authenticated - did you log on to the system"){
+                            self.loggedIn = true;
+                        } 
+                    })
+                    .error(function (data, status, headers, config) {
+
+                    });
+
+            
 //            self.info = {name: "test"};
 //            self.test = "test!!";
             self.buttonClicked = false;
@@ -28,14 +44,14 @@ angular.module('myApp.view3', ['ngRoute'])
 
 
                 $http.get('http://localhost:8080/AngSeedServer/api/demouser/getcomp/' + option + '/' + searchfield + '/' + country)
-                        .success(function (response) {
+                        .success(function (response, status, headers, config) {
 //                            alert("success!");
                             console.log(response);
                             console.log(response.name);
                             self.buttonClicked = true;
                             self.info = response;
                         })
-                        .error(function (response) {
+                        .error(function (response, status, headers, config) {
 //                            alert("Error!1!");
                             self.errormessage = "Fejl i søgningen - prøve igen!";
                         });

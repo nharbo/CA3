@@ -1,7 +1,9 @@
 <div ng-controller="View3Ctrl as ctrl">
     <h3>Company info</h3>
+    
+    {{data}}
 
-    <div class="col-md-3" style="border-radius: 5px;padding: 1em;">
+    <div class="col-md-3" style="border-radius: 5px;padding: 1em;" ng-show="ctrl.loggedIn">
         <form id="search" class="well" style="font-size: small">
             <label>Søgetekst</label><input ng-model="ctrl.searchfield" type="text" name="searchtext" value="" placeholder="Påkrævet" /><br/>
             <label>Søgemulighed</label><select name="searchoption" ng-model="ctrl.option">
