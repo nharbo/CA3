@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("demoadmin")
-@RolesAllowed("Admin")
+//@RolesAllowed("Admin")
 public class Admin {
 
     @GET
@@ -25,8 +25,9 @@ public class Admin {
     @Produces("application/json")
     @Path("getAllUsers")
     public String getUsers() {
-        String allUsers = UserFacade.getAllUsers();
-        return allUsers;
+       
+        
+        return UserFacade.getAllUsers();
     }
 
 }

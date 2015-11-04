@@ -2,6 +2,7 @@ package facades;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.User;
 import java.util.HashMap;
@@ -77,15 +78,18 @@ public class UserFacade {
     }
 
     public static String getAllUsers() {
-        Query query = em.createNamedQuery("User.findAll");
-        List<User> list = query.getResultList();
+        Query query = em.createNativeQuery("SELECT * FROM user" , User.class);
+        
+        List<User> list = (List<User>)query.getResultList();
         JsonArray jsonArray = new JsonArray();
+        
         for (User user: list) {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("username", user.getUserName());
             jsonArray.add(jsonObject);
         }
         return gson.toJson(jsonArray);
+       
     }
     
 }

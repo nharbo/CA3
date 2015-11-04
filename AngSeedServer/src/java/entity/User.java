@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "user")
-@NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT c FROM user c")})
+//@NamedQueries({
+//    @NamedQuery(name = "User.findAll", query = "SELECT c FROM user c")})
 public class User {
 
     private String password;  //Pleeeeease dont store me in plain text
