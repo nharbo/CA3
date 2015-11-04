@@ -17,10 +17,10 @@ angular.module('myApp.view6', ['ngRoute'])
 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8081/AngSeedServer/api/demouser/create' + "{" + $scope.usernameInput + "}" + "{" + $scope.passwordInput + "}",
+                    url: 'http://localhost:8081/AngSeedServer/api/demouser/create' + "{" + $scope.usernameInput + "}" + "{" + $scope.passwordInput + "}"
                 }).then(function successCallback(response) {
                     $scope.returnMessage = response;
                 }, function errorCallback(response) {
-                    alert("Failure message: " + JSON.stringify({reponse: response}))
+                    alert("Failure message: " + JSON.stringify({reponse: response}));
                 });
-            }])
+            }]);
