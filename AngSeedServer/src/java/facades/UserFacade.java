@@ -20,7 +20,6 @@ public class UserFacade {
     private final Map<String, User> users = new HashMap<>();
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
-    static EntityManager em = emf.createEntityManager();
 
 //    public static void main(String[] args) {
 //        insertUsers();
@@ -30,6 +29,8 @@ public class UserFacade {
     }
 
     public void createUser(String name, String password) {
+
+        EntityManager em = emf.createEntityManager();
 
         User newUser = new User(name, password);
         newUser.AddRole("User");
@@ -41,6 +42,8 @@ public class UserFacade {
     }
 
     public static void insertUsers() {
+
+        EntityManager em = emf.createEntityManager();
         //Test Users
 
         User user = new User("user", "test");
@@ -64,11 +67,15 @@ public class UserFacade {
 
     public static User getUserByUserId(String id) {
 
+        EntityManager em = emf.createEntityManager();
+
         return em.find(User.class, id);
 
     }
 
     public static void deleteUser(String id) {
+
+        EntityManager em = emf.createEntityManager();
 
         User user = getUserByUserId(id);
 
@@ -83,11 +90,14 @@ public class UserFacade {
      Return the Roles if users could be authenticated, otherwise null
      */
     public List<String> authenticateUser(String userName, String password) {
+
         User user = getUserByUserId(userName);
         return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
     }
 
     public static String getAllUsers() {
+
+        EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery("SELECT * FROM user", User.class);
 
         List<User> list = (List<User>) query.getResultList();
