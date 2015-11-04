@@ -1,16 +1,19 @@
-<div ng-controller="View3Ctrl as ctrl">
+<div ng-controller="View3Ctrl
+            as ctrl">
     <h3>Company info</h3>
 
     <div class="col-md-3" style="border-radius: 5px;padding: 1em;">
         <form id="search" class="well" style="font-size: small">
             <label>Søgetekst</label><input ng-model="ctrl.searchfield" type="text" name="searchtext" value="" placeholder="Påkrævet" /><br/>
             <label>Søgemulighed</label><select name="searchoption" ng-model="ctrl.option">
-                <option value="var">CVR</option>
+                <option value="" selected disabled>Vælg præference</option>
+                <option value="vat">CVR</option>
                 <option value="name">Navn</option>
                 <option value="produ">Produkt</option>
                 <option value="phone">Telefonnummer</option>
             </select><br/>
             <label>Land</label><select name="country" ng-model="ctrl.country">
+                <option value="" selected disabled>Vælg land</option>
                 <option value="dk">Danmark</option>
                 <option value="dk">Norge</option>
             </select><br/>
@@ -22,38 +25,59 @@
     <br/>
     <br/><h1>{{ctrl.errormessage}}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <td>CVR</td>
-                <td>{{ctrl.info.vat}}</td>
-            </tr>
-            <tr>
-                <td>Navn</td>
-                <td>{{ctrl.info.name}}</td>
-            </tr>
-            <tr>
-                <td>Addresse</td>
-                <td>{{ctrl.info.address}}</td>
-            </tr>
-            <tr>
-                <td>By</td>
-                <td>{{ctrl.info.city}}</td>
-            </tr>
-            <tr>
-                <td>Postnummer</td>
-                <td>{{ctrl.info.zipcode}}</td>
-            </tr>
-            <tr>
-                <td>Telefon</td>
-                <td>{{ctrl.info.phone}}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>{{ctrl.info.email}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div ng-show="ctrl.buttonClicked">
+
+        <table class="table" >
+            <tbody>
+                <tr>
+                    <td>CVR</td>
+                    <td>{{ctrl.info.vat}}</td>
+                </tr>
+                <tr>
+                    <td>Navn</td>
+                    <td>{{ctrl.info.name}}</td>
+                </tr>
+                <tr>
+                    <td>Addresse</td>
+                    <td>{{ctrl.info.address}}</td>
+                </tr>
+                <tr>
+                    <td>By</td>
+                    <td>{{ctrl.info.city}}</td>
+                </tr>
+                <tr>
+                    <td>Postnummer</td>
+                    <td>{{ctrl.info.zipcode}}</td>
+                </tr>
+                <tr>
+                    <td>Telefon</td>
+                    <td>{{ctrl.info.phone}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ctrl.info.email}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <uib-accordion ng-repeat="response in ctrl.info.productionunits">
+
+            <uib-accordion-group heading="{{response.name}}">
+                <ul>
+                    <li>Navn: {{response.name}}</li>
+                    <li>Addresse: {{response.address}}</li>
+                    <li>Postnummer: {{response.zipcode}}</li>
+                    <li>By: {{response.city}}</li>
+                    <li>Telefon: {{response.phone}}</li>
+                    <li>Email: {{response.email}}</li>
+                    <li>Fax: {{response.fax}}</li>
+                </ul>
+            </uib-accordion-group>
+
+        </uib-accordion>
 
 
-</div>
+
+
+    </div>

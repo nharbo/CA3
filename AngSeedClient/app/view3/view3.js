@@ -14,7 +14,7 @@ angular.module('myApp.view3', ['ngRoute'])
             var self = this;
 //            self.info = {name: "test"};
 //            self.test = "test!!";
-
+            self.buttonClicked = false;
 
             self.searchbutton = function () {
 //                alert("in function");
@@ -31,6 +31,7 @@ angular.module('myApp.view3', ['ngRoute'])
 //                            alert("success!");
                             console.log(response);
                             console.log(response.name);
+                            self.buttonClicked = true;
                             self.info = response;
                         })
                         .error(function (response) {
