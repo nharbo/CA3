@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import deploy.DeploymentConfiguration;
+import entity.Currency;
 import entity.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -28,9 +29,10 @@ public class UserFacade {
 //    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
-//        insertUsers();
-//    }
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        insertUsers();
+        
+    }
     
     public UserFacade() {
 
@@ -63,7 +65,8 @@ public class UserFacade {
 
         EntityManager em = emf.createEntityManager();
         //Test Users
-
+        
+        
         String hashPwd = PasswordHash.createHash("test");
         User user = new User("user", hashPwd);
         user.AddRole("User");
@@ -81,6 +84,7 @@ public class UserFacade {
         em.persist(user);
         em.persist(admin);
         em.persist(both);
+       
         em.getTransaction().commit();
         em.close();
 
