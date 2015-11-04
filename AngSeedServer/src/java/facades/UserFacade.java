@@ -19,6 +19,17 @@ public class UserFacade {
 //    public static void main(String[] args) {
 //        insertUsers();
 //    }
+    
+    public void createUser(String name, String password){
+        
+        User newUser = new User(name, password);
+        newUser.AddRole("User");
+        
+        em.getTransaction().begin();
+        em.persist(newUser);
+        em.getTransaction().commit();
+        em.close();
+    }
     public static void insertUsers() {
         //Test Users
 

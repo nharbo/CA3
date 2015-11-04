@@ -2,13 +2,15 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
+import facades.UserFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Scanner;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -45,5 +47,17 @@ public class User {
         scan.close();
         
       return jsonStr;
+  }
+  
+  
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("/create/{name}/{password}")
+  public void createUser(@PathParam("name") String name, @PathParam("password") String password){
+      UserFacade uf = new UserFacade();
+      
+      uf.createUser(name, password);
+      
+      
   }
 }
