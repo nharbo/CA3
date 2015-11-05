@@ -11,8 +11,8 @@ angular.module('myApp.view5', ['ngRoute'])
 
         .controller('View5Ctrl', function ($http, $scope) {
             
-            $scope.loggedIn = false;
-            $scope.showMessage = false;
+            //$scope.loggedIn = false;
+            //$scope.showMessage = true;
 
 
             $http.get('api/demoadmin')
@@ -26,7 +26,7 @@ angular.module('myApp.view5', ['ngRoute'])
                 method: 'GET',
                 url: 'api/demoadmin/getAllUsers/'
             }).success(function (response) {
-                loggedIn = true;
+                //loggedIn = true;
                 $scope.users = response;
             }).error(function (response) {
 
@@ -44,10 +44,10 @@ angular.module('myApp.view5', ['ngRoute'])
                 }).success(function () {
 //                    splice opdaterer viewet "on the fly"
                     $scope.users.splice(index, 1);
-                    showMessage = true;
+                    //showMessage = true;
                     $scope.status = "User successfully deleted!";
                 }).error(function (response) {
-                    showMessage = true;
+                    //showMessage = true;
                     $scope.status = "User not deleted - try again!"
                 });
             };
