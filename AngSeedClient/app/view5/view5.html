@@ -13,10 +13,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="user in users | filter: userSearch">
+                <tr ng-repeat="user in users| filter: userSearch">
                     <td>{{user.username}}</td>
                     <td>
-                        <a href="#" >Delete</a>
+                        <input type="button" value="Remove" class="btn-default" ng-click="">
                     </td>
                 </tr>
             </tbody>
