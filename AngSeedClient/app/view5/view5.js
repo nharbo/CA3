@@ -10,6 +10,8 @@ angular.module('myApp.view5', ['ngRoute'])
             }])
 
         .controller('View5Ctrl', function ($http, $scope) {
+            
+            var showMessage = false;
 
 
             $http.get('api/demoadmin')
@@ -27,4 +29,24 @@ angular.module('myApp.view5', ['ngRoute'])
             }).error(function (response) {
 
             });
+//            $scope.test = function(){
+//                alert('test');
+//            };
+
+//            index kommer fra track by index
+            $scope.delete = function (index, username) {
+                
+                $http({
+                    method: 'POST',
+                    url: 'http://localhost:8080/AngSeedServer/api/demoadmin/user/' + username
+                }).success(function () {
+//                    splice opdaterer viewet "on the fly"
+                    $scope.users.splice(index, 1);
+                    showMessage = true;
+                    $scope.status = "User successfully deleted!";
+                }).error(function (response) {
+                    showMessage = true;
+                    $scope.status = "User not deleted - try again!"
+                });
+            };
         });
