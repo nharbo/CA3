@@ -48,14 +48,18 @@ public class Login {
     String password =  json.get("password").getAsString();
     JsonObject responseJson = new JsonObject();
     List<String> roles;  
-    
-    if ((roles=authenticate(username, password))!=null) { 
+      try {
+           if ((roles=authenticate(username, password))!=null) { 
       String token = createToken(username,roles);    
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);  
-      return Response.ok(new Gson().toJson(responseJson)).build();
+      
     }  
-    throw new NotAuthorizedException("Ilegal username or password",Response.Status.UNAUTHORIZED);
+      } catch (Exception e) {
+           throw new NotAuthorizedException("Ilegal username or password",Response.Status.UNAUTHORIZED);
+      }
+   
+   return Response.ok(new Gson().toJson(responseJson)).build();
   }
   
   private List<String>  authenticate(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException{

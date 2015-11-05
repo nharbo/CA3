@@ -33,7 +33,7 @@ public class APItest {
     static Server server;
 
     public APItest() {
-        baseURI = "http://localhost:8082";
+        baseURI = "http://localhost:8080/AngSeedServer";
         defaultParser = Parser.JSON;
         basePath = "/api";
     }
@@ -80,6 +80,7 @@ public class APItest {
                 then().
                 statusCode(401).
                 body("error.message", equalTo("Ilegal username or password"));
+//body("error.message", equalTo("Ilegal username or password"));
     }
 
     @Test
@@ -115,7 +116,7 @@ public class APItest {
                 post("/login").
                 then().
                 statusCode(200).extract().asString();
-
+        
         //Then test /demouser URL with the correct token extracted from the JSON string.
         given().
                 contentType("application/json").
