@@ -27,14 +27,15 @@ angular.module('myApp.view4', ['ngRoute'])
             }).success(function (response) {
                 console.log(response);
                 $scope.currencies = response;
-//                for (var i = 0; i < $scope.currencies.length; i++) {
-//                    if ($scope.currencies[i].code === "EUR") {
-//                        $scope.fromCurrency = $scope.currencies[i].code;
-//                    }
-//                    if ($scope.currencies[i].code === "USD") {
-//                        $scope.toCurrency = $scope.currencies[i].code;
-//                    }
-//                }
+                $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
+                for (var i = 0; i < $scope.currencies.length; i++) {
+                    if ($scope.currencies[i].code === "EUR") {
+                        $scope.fromCurrency = $scope.currencies[i].code;
+                    }
+                    if ($scope.currencies[i].code === "USD") {
+                        $scope.toCurrency = $scope.currencies[i].code;
+                    }
+                }
             }).error(function () {
                 console.log("Converting failure");
             });

@@ -12,7 +12,6 @@
                             <div class="form-group">
                                 <label for="">From</label>
                                 <select class="form-control" ng-model="fromCurrency" ng-change="calcConvert()">
-                                    <option selected value="100">DKK</option>
                                     <option ng-repeat="currency in currencies" value="{{currency.rate}}">{{currency.code}}</option>
                                 </select>
                             </div>
@@ -21,9 +20,8 @@
                             <div class="form-group">
                                 <label for="">From</label>
                                 <select class="form-control" ng-model="toCurrency" ng-change="calcConvert()">
-                                    <option selected value="100">DKK</option>
                                     <option ng-repeat="currency in currencies" value="{{currency.rate}}">{{currency.code}}</option>
-                                    
+
                                 </select>
                             </div>
                         </div>
