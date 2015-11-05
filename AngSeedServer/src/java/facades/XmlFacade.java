@@ -6,6 +6,7 @@
 package facades;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import entity.Currency;
@@ -21,7 +22,7 @@ import javax.persistence.Query;
  */
 public class XmlFacade {
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
-    private static Gson gson = new Gson();
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     
     
     public XmlFacade(){}
