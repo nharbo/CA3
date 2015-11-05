@@ -43,7 +43,7 @@ angular.module('myApp.view3', ['ngRoute'])
                 console.log(country);
 
 
-                $http.get('http://localhost:8080/AngSeedServer/api/demouser/getcomp/' + option + '/' + searchfield + '/' + country)
+                $http.get('api/demouser/getcomp/' + option + '/' + searchfield + '/' + country)
                         .success(function (response, status, headers, config) {
 //                            alert("success!");
                             console.log(response);

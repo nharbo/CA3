@@ -18,6 +18,12 @@ import static org.junit.Assert.*;
  */
 public class FacadeTest {
     
+    //Using a test-database containing 3 users:
+    // - username -  /  - password - / - role -
+    //    user       /     test      /   user
+    //    admin      /     test      /   admin
+    //    user_admin /     test      /   user + admin
+    
     public FacadeTest() {
     }
     

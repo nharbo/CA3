@@ -10,12 +10,14 @@ import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import deploy.DeploymentConfiguration;
 import facades.UserFacade;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
@@ -46,19 +48,25 @@ public class Login {
     String password =  json.get("password").getAsString();
     JsonObject responseJson = new JsonObject();
     List<String> roles;  
-    
-    if ((roles=authenticate(username, password))!=null) { 
+      try {
+           if ((roles=authenticate(username, password))!=null) { 
       String token = createToken(username,roles);    
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);  
-      return Response.ok(new Gson().toJson(responseJson)).build();
+      
     }  
-    throw new NotAuthorizedException("Ilegal username or password",Response.Status.UNAUTHORIZED);
+      } catch (Exception e) {
+           throw new NotAuthorizedException("Ilegal username or password",Response.Status.UNAUTHORIZED);
+      }
+   
+   return Response.ok(new Gson().toJson(responseJson)).build();
   }
   
   private List<String>  authenticate(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
-    UserFacade facade = new UserFacade();
-    return facade.authenticateUser(userName, password);
+     UserFacade uf = new UserFacade( Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
+     
+//      UserFacade facade = new UserFacade();
+    return uf.authenticateUser(userName, password);
   }
 
   private String createToken(String subject, List<String> roles) throws JOSEException {

@@ -16,7 +16,7 @@ angular.module('myApp.view6', ['ngRoute'])
 
                     $http({
                         method: 'POST',
-                        url: 'http://localhost:8080/AngSeedServer/api/unknown/create/' + $scope.usernameInput + "/" + $scope.passwordInput
+                        url: 'api/unknown/create/' + $scope.usernameInput + "/" + $scope.passwordInput
                     }).then(function successCallback(data) {
                         $scope.returnMessage = data.data;
                     }, function errorCallback(data) {

@@ -5,7 +5,9 @@
  */
 package rest;
 
+import deploy.DeploymentConfiguration;
 import facades.UserFacade;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -44,7 +46,7 @@ public class unknown {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/create/{name}/{password}")
   public String createUser(@PathParam("name") String name, @PathParam("password") String password){
-      UserFacade uf = new UserFacade();
+      UserFacade uf = new UserFacade( Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
       
       uf.createUser(name, password);
       

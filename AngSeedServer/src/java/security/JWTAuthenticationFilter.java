@@ -5,6 +5,7 @@ import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.SignedJWT;
+import deploy.DeploymentConfiguration;
 import entity.User;
 import facades.UserFacade;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.annotation.Priority;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.Persistence;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -88,7 +90,9 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
   }
   
   private UserPrincipal getPricipalByUserId(String userId) {
-    UserFacade facade = new UserFacade();
+       UserFacade facade = new UserFacade( Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
+     
+//    UserFacade facade = new UserFacade();
     User user = facade.getUserByUserId(userId);
     if (user != null) {
       return new UserPrincipal(user.getUserName(), user.getRoles());  
