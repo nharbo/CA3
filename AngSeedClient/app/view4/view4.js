@@ -22,7 +22,7 @@ angular.module('myApp.view4', ['ngRoute'])
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/AngSeedServer/api/Currency',
+                url: 'api/Currency',
                 cache: true
             }).success(function (response) {
                 console.log(response);
