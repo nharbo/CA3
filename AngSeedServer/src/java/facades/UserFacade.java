@@ -131,6 +131,7 @@ public class UserFacade {
     public static String getAllUsers() {
 
         EntityManager em = emf.createEntityManager();
+        //Fix så den kun henter user-roles..
         Query query = em.createNativeQuery("SELECT * FROM user", User.class);
 
         List<User> list = (List<User>) query.getResultList();
