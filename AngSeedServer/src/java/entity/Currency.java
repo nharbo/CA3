@@ -1,6 +1,8 @@
 package entity;
 
+
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +18,17 @@ public class Currency implements Serializable {
     private String ccode;
     private String cdesc;
     private float rate;
+    private Date dato;
 
     public Currency() {
 
     }
 
-    public Currency(String code, String desc, float rate) {
+    public Currency(String code, String desc, float rate, Date dato) {
         this.ccode = code;
         this.cdesc = desc;
         this.rate = rate;
+        this.dato = dato;
     }
 
     public String getDesc() {
@@ -50,4 +54,14 @@ public class Currency implements Serializable {
     public void setCode(String code) {
         this.ccode = code;
     }
+
+    public Date getDate() {
+        return dato;
+    }
+
+    public void setDate(Date dato) {
+        this.dato = dato;
+    }
+    
+    
 }
