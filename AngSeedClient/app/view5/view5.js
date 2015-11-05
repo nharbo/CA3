@@ -11,7 +11,8 @@ angular.module('myApp.view5', ['ngRoute'])
 
         .controller('View5Ctrl', function ($http, $scope) {
             
-            var showMessage = false;
+            $scope.loggedIn = false;
+            $scope.showMessage = false;
 
 
             $http.get('api/demoadmin')
@@ -23,8 +24,9 @@ angular.module('myApp.view5', ['ngRoute'])
                     });
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/AngSeedServer/api/demoadmin/getAllUsers/'
+                url: 'api/demoadmin/getAllUsers/'
             }).success(function (response) {
+                loggedIn = true;
                 $scope.users = response;
             }).error(function (response) {
 
@@ -38,7 +40,7 @@ angular.module('myApp.view5', ['ngRoute'])
                 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8080/AngSeedServer/api/demoadmin/user/' + username
+                    url: 'api/demoadmin/user/' + username
                 }).success(function () {
 //                    splice opdaterer viewet "on the fly"
                     $scope.users.splice(index, 1);
