@@ -25,7 +25,6 @@ angular.module('myApp.view4', ['ngRoute'])
                 url: 'api/Currency',
                 cache: true
             }).success(function (response) {
-                console.log(response);
                 $scope.currencies = response;
                 $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
                 for (var i = 0; i < $scope.currencies.length; i++) {
@@ -44,7 +43,7 @@ angular.module('myApp.view4', ['ngRoute'])
                 var from = $scope.fromCurrency;
                 var to = $scope.toCurrency;
                 var input = $scope.fromCurrencyVal;
-                $scope.toCurrencyVal = input * (from/to);
+                $scope.toCurrencyVal = input * (from / to);
             }
 
         });
