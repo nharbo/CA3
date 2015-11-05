@@ -10,12 +10,14 @@ import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import deploy.DeploymentConfiguration;
 import facades.UserFacade;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
@@ -57,8 +59,10 @@ public class Login {
   }
   
   private List<String>  authenticate(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
-    UserFacade facade = new UserFacade();
-    return facade.authenticateUser(userName, password);
+     UserFacade uf = new UserFacade( Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
+     
+//      UserFacade facade = new UserFacade();
+    return uf.authenticateUser(userName, password);
   }
 
   private String createToken(String subject, List<String> roles) throws JOSEException {
