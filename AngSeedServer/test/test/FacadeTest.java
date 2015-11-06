@@ -6,6 +6,7 @@
 package test;
 
 import facades.UserFacade;
+import facades.XmlFacade;
 import static org.hamcrest.Matchers.is;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,7 +47,10 @@ public class FacadeTest {
     
     @After
     public void tearDown() {
-        // facades.UserFacade.deleteUser("deleteTest");
+        if (facades.UserFacade.getUserByUserId("deleteTest").getUserName().equals("deleteTest")) {
+            facades.UserFacade.deleteUser("deleteTest");
+        }
+        
     }
     
     @Test
@@ -61,4 +65,20 @@ public class FacadeTest {
         assertEquals("noUserFound", facades.UserFacade.getUserByUserId("deleteTest").getUserName());
     }
     
+    @Test
+    public void GetAllUsersFromDB(){
+        String result = "[{\"username\":\"admin\"},{\"username\":\"deleteTest\"},{\"username\":\"user\"},{\"username\":\"user_admin\"}]";
+        assertEquals(result, facades.UserFacade.getAllUsers());
+    
+    }
+    
+    @Test
+    public void GetCurrencyFromDB(){
+        // indsæt hvad du vil se om findes i Json Arrayet
+        assertTrue(facades.XmlFacade.getCurrency().contains("AUD"));
+        assertTrue(facades.XmlFacade.getCurrency().contains("Australian dollars"));
+        assertTrue(facades.XmlFacade.getCurrency().contains("490.43"));
+        assertTrue(facades.XmlFacade.getCurrency().contains("Nov 5, 2015 12:00:00 AM"));
+        
+    }
 }

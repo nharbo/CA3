@@ -32,7 +32,7 @@ public class UserFacade {
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 //        insertUsers();
         System.out.println(getUserByUserId("kay").getUserName());
-
+        System.out.println(getAllUsers());
     }
 
     public UserFacade(EntityManagerFactory emf) {
@@ -130,7 +130,7 @@ public class UserFacade {
         }
     }
 
-    public String getAllUsers() {
+    public static String getAllUsers() {
 
         EntityManager em = emf.createEntityManager();
         //Fix så den kun henter user-roles..

@@ -23,14 +23,19 @@ import javax.persistence.Query;
  */
 public class XmlFacade {
     
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
-    
+   // static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     
     
     public XmlFacade(){}
     
-    public String getCurrency(){
+    public static void main(String[] args) {
+        System.out.println(getCurrency());
+    }
+    
+    
+    public static String getCurrency(){
         EntityManager em = emf.createEntityManager();
         
         Query query = em.createNativeQuery("SELECT * FROM currency", Currency.class);
