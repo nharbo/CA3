@@ -5,8 +5,10 @@
  */
 package test;
 
+import deploy.DeploymentConfiguration;
 import facades.UserFacade;
 import facades.XmlFacade;
+import javax.persistence.Persistence;
 import static org.hamcrest.Matchers.is;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,6 +22,9 @@ import static org.junit.Assert.*;
  * @author nicolaiharbo
  */
 public class FacadeTest {
+    
+    UserFacade facade = new UserFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
+    XmlFacade xfacade = new XmlFacade();
     
     //Using a test-database containing 3 users:
     // - username -  /  - password - / - role -
@@ -42,43 +47,43 @@ public class FacadeTest {
     
     @Before
     public void setUp() {
-         facades.UserFacade.createUser("deleteTest", "delete");
+         facade.createUser("deleteTest", "delete");
     }
     
     @After
     public void tearDown() {
-        if (facades.UserFacade.getUserByUserId("deleteTest").getUserName().equals("deleteTest")) {
-            facades.UserFacade.deleteUser("deleteTest");
+        if (facade.getUserByUserId("deleteTest").getUserName().equals("deleteTest")) {
+            facade.deleteUser("deleteTest");
         }
         
     }
     
     @Test
     public void TestFindUserRoleById(){
-        assertEquals("Admin", facades.UserFacade.getUserByUserId("admin").getRoles().get(0));
+        assertEquals("Admin", facade.getUserByUserId("admin").getRoles().get(0));
     }
     
     @Test
     public void DeleteUserFromDatabase(){
-        assertEquals("deleteTest", facades.UserFacade.getUserByUserId("deleteTest").getUserName());
-        facades.UserFacade.deleteUser("deleteTest");
-        assertEquals("noUserFound", facades.UserFacade.getUserByUserId("deleteTest").getUserName());
+        assertEquals("deleteTest", facade.getUserByUserId("deleteTest").getUserName());
+        facade.deleteUser("deleteTest");
+        assertEquals("noUserFound", facade.getUserByUserId("deleteTest").getUserName());
     }
     
     @Test
     public void GetAllUsersFromDB(){
         String result = "[{\"username\":\"admin\"},{\"username\":\"deleteTest\"},{\"username\":\"user\"},{\"username\":\"user_admin\"}]";
-        assertEquals(result, facades.UserFacade.getAllUsers());
+        assertEquals(result, facade.getAllUsers());
     
     }
     
     @Test
     public void GetCurrencyFromDB(){
         // indsæt hvad du vil se om findes i Json Arrayet
-        assertTrue(facades.XmlFacade.getCurrency().contains("AUD"));
-        assertTrue(facades.XmlFacade.getCurrency().contains("Australian dollars"));
-        assertTrue(facades.XmlFacade.getCurrency().contains("490.43"));
-        assertTrue(facades.XmlFacade.getCurrency().contains("Nov 5, 2015 12:00:00 AM"));
+        assertTrue(xfacade.getCurrency().contains("AUD"));
+        assertTrue(xfacade.getCurrency().contains("Australian dollars"));
+        assertTrue(xfacade.getCurrency().contains("490.43"));
+        assertTrue(xfacade.getCurrency().contains("Nov 5, 2015 12:00:00 AM"));
         
     }
 }
