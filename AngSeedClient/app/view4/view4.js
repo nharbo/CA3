@@ -25,16 +25,23 @@ angular.module('myApp.view4', ['ngRoute'])
                 url: 'api/Currency',
                 cache: true
             }).success(function (response) {
-                console.log(response);
                 $scope.currencies = response;
+
+
+                $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
+//                $scope.fromCurrency = "EUR";
+//                $scope.toCurrency = "DKK";
+//                $scope.fromCurrencyVal = 1;
+//
 //                for (var i = 0; i < $scope.currencies.length; i++) {
 //                    if ($scope.currencies[i].code === "EUR") {
-//                        $scope.fromCurrency = $scope.currencies[i].code;
+//                        $scope.fromCurrency = "EUR";
 //                    }
 //                    if ($scope.currencies[i].code === "USD") {
-//                        $scope.toCurrency = $scope.currencies[i].code;
+//                        $scope.toCurrency = "USD";
 //                    }
 //                }
+//                console.log($scope.fromCurrency);
             }).error(function () {
                 console.log("Converting failure");
             });
@@ -43,7 +50,7 @@ angular.module('myApp.view4', ['ngRoute'])
                 var from = $scope.fromCurrency;
                 var to = $scope.toCurrency;
                 var input = $scope.fromCurrencyVal;
-                $scope.toCurrencyVal = input * (from/to);
-            }
+                $scope.toCurrencyVal = input * (from / to);
+            };
 
         });
