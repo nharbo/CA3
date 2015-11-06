@@ -10,9 +10,18 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
 
         .controller('View4Ctrl', function ($http, $scope) {
+
+            $scope.fromCurrency = "EUR";
+            $scope.toCurrency = "DKK";
+
+            $scope.loggedIn = false;
+
             $http.get('api/demouser')
                     .success(function (data, status, headers, config) {
                         $scope.data = data;
+                        if (data.message != "401: You are are not Authenticated - did you log on to the system") {
+                            $scope.loggedIn = true;
+                        }
                     })
                     .error(function (data, status, headers, config) {
 
@@ -26,11 +35,8 @@ angular.module('myApp.view4', ['ngRoute'])
                 cache: true
             }).success(function (response) {
                 $scope.currencies = response;
-                console.log(response)
-
                 $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
-//                $scope.fromCurrency = "EUR";
-//                $scope.toCurrency = "DKK";
+
 //                $scope.fromCurrencyVal = 1;
 //
 //                for (var i = 0; i < $scope.currencies.length; i++) {
@@ -41,7 +47,7 @@ angular.module('myApp.view4', ['ngRoute'])
 //                        $scope.toCurrency = "USD";
 //                    }
 //                }
-//                console.log($scope.fromCurrency);
+                console.log($scope.fromCurrency);
             }).error(function () {
                 console.log("Converting failure");
             });
@@ -51,6 +57,14 @@ angular.module('myApp.view4', ['ngRoute'])
                 var to = $scope.toCurrency;
                 var input = $scope.fromCurrencyVal;
                 $scope.toCurrencyVal = input * (from / to);
+            };
+
+            $scope.swapCurrency = function () {
+                var from = $scope.fromCurrency;
+                var to = $scope.toCurrency;
+                $scope.fromCurrency = to;
+                $scope.toCurrency = from;
+                $scope.calcConvert();
             };
 
         });
