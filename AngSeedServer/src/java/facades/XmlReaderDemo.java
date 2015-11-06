@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class XmlReaderDemo extends DefaultHandler {
+public class XmlReaderDemo extends DefaultHandler implements Runnable {
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
     @Override
     public void startDocument() throws SAXException {
@@ -76,7 +76,12 @@ public class XmlReaderDemo extends DefaultHandler {
         }
      
      }
-    public static void main(String[] argv) {
-       insertCurrency();
+//    public static void main(String[] argv) {
+//       insertCurrency();
+//    }
+
+    @Override
+    public void run() {
+        insertCurrency();
     }
 }

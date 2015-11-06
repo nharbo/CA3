@@ -29,10 +29,10 @@ public class UserFacade {
     static EntityManagerFactory emf ;
  //   static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
-//        insertUsers();
-//        
-//    }
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        insertUsers();
+        
+    }
     
     public UserFacade(EntityManagerFactory emf) {
 this.emf=emf;
@@ -133,6 +133,7 @@ this.emf=emf;
         EntityManager em = emf.createEntityManager();
         //Fix så den kun henter user-roles..
         Query query = em.createNativeQuery("SELECT * FROM user", User.class);
+        Query query1 = em.createNamedQuery("Currency.getCurrencys");
 
         List<User> list = (List<User>) query.getResultList();
         JsonArray jsonArray = new JsonArray();
