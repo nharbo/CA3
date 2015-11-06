@@ -26,8 +26,6 @@ angular.module('myApp.view4', ['ngRoute'])
                 cache: true
             }).success(function (response) {
                 $scope.currencies = response;
-
-
                 $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
 //                $scope.fromCurrency = "EUR";
 //                $scope.toCurrency = "DKK";
@@ -41,7 +39,7 @@ angular.module('myApp.view4', ['ngRoute'])
 //                        $scope.toCurrency = "USD";
 //                    }
 //                }
-//                console.log($scope.fromCurrency);
+                console.log($scope.fromCurrency);
             }).error(function () {
                 console.log("Converting failure");
             });
