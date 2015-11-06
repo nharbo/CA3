@@ -1,9 +1,11 @@
 package rest;
 
+import deploy.DeploymentConfiguration;
 import facades.UserFacade;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.Persistence;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 @Path("demoadmin")
 //RolesAllowed("Admin")
 public class Admin {
+    
+    UserFacade facade = new UserFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
    
 
     @GET
@@ -30,7 +34,7 @@ public class Admin {
     public String getUsers() {
        
         
-        return UserFacade.getAllUsers();
+        return facade.getAllUsers();
     }
     
     @POST
@@ -38,7 +42,7 @@ public class Admin {
     @Path("user/{id}")
     public void deleteUser(@PathParam("id") String id) {
        
-        UserFacade.deleteUser(id);
+        facade.deleteUser(id);
        
     }
 

@@ -33,8 +33,8 @@ public class XmlFacade {
     public String getCurrency(){
         EntityManager em = emf.createEntityManager();
         
-        //Query query = em.createNativeQuery("SELECT * FROM currency", Currency.class);
-        Query query = em.createNamedQuery("SELECT * FROM currency", Currency.class);
+        Query query = em.createNativeQuery("SELECT * FROM currency", Currency.class);
+//        Query query = em.createNamedQuery("SELECT * FROM currency", Currency.class);
         JsonArray jal = new JsonArray();
         List<Currency> datalist = query.getResultList();
         

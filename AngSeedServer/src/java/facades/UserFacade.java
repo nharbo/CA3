@@ -38,7 +38,7 @@ public class UserFacade {
         this.emf = emf;
     }
 
-    public static void createUser(String name, String password) {
+    public void createUser(String name, String password) {
 
         try {
             EntityManager em = emf.createEntityManager();
@@ -61,7 +61,7 @@ public class UserFacade {
         }
     }
 
-    public static void insertUsers() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public void insertUsers() throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         EntityManager em = emf.createEntityManager();
         //Test Users
@@ -89,7 +89,7 @@ public class UserFacade {
 
     }
 
-    public static User getUserByUserId(String id) {
+    public User getUserByUserId(String id) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -97,7 +97,7 @@ public class UserFacade {
 
     }
 
-    public static void deleteUser(String id) {
+    public void deleteUser(String id) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -126,7 +126,7 @@ public class UserFacade {
         }
     }
 
-    public static String getAllUsers() {
+    public String getAllUsers() {
 
         EntityManager em = emf.createEntityManager();
         //Fix så den kun henter user-roles..
