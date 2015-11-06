@@ -160,17 +160,54 @@ public class APItest {
                 then().
                 statusCode(200).extract().asString();
 
-        
         given().
                 contentType("application/json").
                 header("Authorization", "Bearer " + from(json).get("token")).
                 get("/demoadmin/getAllUsers").
                 then().
-                statusCode(200).body("username", hasItems("user", "admin" ,"user_admin"));
-                        
-        //[{\"username\":\"admin\"},{\"username\":\"user\"},{\"username\":\"user_admin\"}]
-       // System.out.println(res);
-           
+                statusCode(200).body("username", hasItems("user", "admin", "user_admin"));
 
+        //[{\"username\":\"admin\"},{\"username\":\"user\"},{\"username\":\"user_admin\"}]
+        // System.out.println(res);
+    }
+
+    @Test
+    public void TestGetCurrencyWithLogin() {
+        String json = given().
+                contentType("application/json").
+                body("{'username':'user','password':'test'}").
+                when().
+                post("/login").
+                then().
+                statusCode(200).extract().asString();
+
+        given().
+                contentType("application/json").
+                header("Authorization", "Bearer " + from(json).
+                        get("token")).
+                get("/Currency").
+                then()
+                .statusCode(200)
+                .body("code", hasItem("AUD"));
+    }
+    
+    @Test
+    public void TestGetCurrencyWithWrongLogin() {
+        String json = given().
+                contentType("application/json").
+                body("{'username':'Fakeuser','password':'test'}").
+                when().
+                post("/login").
+                then().
+                statusCode(401).extract().asString();
+
+        given().
+                contentType("application/json").
+                header("Authorization", "Bearer " + from(json).
+                        get("token")).
+                get("/Currency").
+                then()
+                .statusCode(200)
+                .body("code", hasItem("AUD"));
     }
 }

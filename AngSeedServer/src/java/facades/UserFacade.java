@@ -26,19 +26,20 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-    static EntityManagerFactory emf;
-//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    //   static EntityManagerFactory emf;
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 //        insertUsers();
-//        
-//    }
-    
+        System.out.println(getUserByUserId("kay").getUserName());
+        System.out.println(getAllUsers());
+    }
+
     public UserFacade(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
-    public void createUser(String name, String password) {
+    public static void createUser(String name, String password) {
 
         try {
             EntityManager em = emf.createEntityManager();
@@ -89,15 +90,18 @@ public class UserFacade {
 
     }
 
-    public User getUserByUserId(String id) {
+    public static User getUserByUserId(String id) {
 
         EntityManager em = emf.createEntityManager();
-
-        return em.find(User.class, id);
-
+        if (em.find(User.class, id) == null) {
+            User noUser = new User("noUserFound", "noUserFound");
+            return noUser;
+        } else {
+            return em.find(User.class, id);
+        }
     }
 
-    public void deleteUser(String id) {
+    public static void deleteUser(String id) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -126,7 +130,7 @@ public class UserFacade {
         }
     }
 
-    public String getAllUsers() {
+    public static String getAllUsers() {
 
         EntityManager em = emf.createEntityManager();
         //Fix så den kun henter user-roles..
