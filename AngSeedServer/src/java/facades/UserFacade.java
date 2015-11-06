@@ -26,14 +26,14 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-       static EntityManagerFactory emf;
+     static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     //static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
-//        insertUsers();
-        System.out.println(getUserByUserId("kay").getUserName());
-        System.out.println(getAllUsers());
-    }
+//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+////        insertUsers();
+//        System.out.println(getUserByUserId("kay").getUserName());
+//        System.out.println(getAllUsers());
+//    }
 
     public UserFacade(EntityManagerFactory emf) {
         this.emf = emf;
