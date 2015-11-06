@@ -26,19 +26,19 @@ public class UserFacade {
 
     private final Map<String, User> users = new HashMap<>();
 
-    static EntityManagerFactory emf ;
- //   static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    static EntityManagerFactory emf;
+//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        insertUsers();
-        
-    }
+//    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+//        insertUsers();
+//        
+//    }
     
     public UserFacade(EntityManagerFactory emf) {
-this.emf=emf;
+        this.emf = emf;
     }
 
-    public void createUser(String name, String password) {
+    public static void createUser(String name, String password) {
 
         try {
             EntityManager em = emf.createEntityManager();
@@ -65,8 +65,7 @@ this.emf=emf;
 
         EntityManager em = emf.createEntityManager();
         //Test Users
-        
-        
+
         String hashPwd = PasswordHash.createHash("test");
         User user = new User("user", hashPwd);
         user.AddRole("User");
@@ -84,7 +83,7 @@ this.emf=emf;
         em.persist(user);
         em.persist(admin);
         em.persist(both);
-       
+
         em.getTransaction().commit();
         em.close();
 
@@ -103,9 +102,8 @@ this.emf=emf;
         EntityManager em = emf.createEntityManager();
 
 //        User user = getUserByUserId(id);
-
         em.getTransaction().begin();
-        
+
         em.remove(em.find(User.class, id));
         em.getTransaction().commit();
         em.close();
@@ -133,7 +131,7 @@ this.emf=emf;
         EntityManager em = emf.createEntityManager();
         //Fix så den kun henter user-roles..
         Query query = em.createNativeQuery("SELECT * FROM user", User.class);
-        Query query1 = em.createNamedQuery("Currency.getCurrencys");
+//        Query query1 = em.createNamedQuery("Currency.getCurrencys");
 
         List<User> list = (List<User>) query.getResultList();
         JsonArray jsonArray = new JsonArray();

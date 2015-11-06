@@ -1,5 +1,6 @@
 package facades;
 
+import deploy.DeploymentConfiguration;
 import entity.Currency;
 import java.io.IOException;
 import org.xml.sax.*;
@@ -11,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class XmlReaderDemo extends DefaultHandler implements Runnable {
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     @Override
     public void startDocument() throws SAXException {
         System.out.println("Start Document (Sax-event)");

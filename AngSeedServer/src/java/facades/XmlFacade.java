@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import deploy.DeploymentConfiguration;
 import entity.Currency;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,7 +22,9 @@ import javax.persistence.Query;
  * @author Florent
  */
 public class XmlFacade {
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
+    
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     
     
