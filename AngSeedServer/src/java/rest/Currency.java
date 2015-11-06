@@ -5,7 +5,9 @@
  */
 package rest;
 
+import deploy.DeploymentConfiguration;
 import facades.XmlFacade;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;

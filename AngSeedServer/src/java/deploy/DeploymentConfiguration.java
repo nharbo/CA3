@@ -7,7 +7,7 @@ import javax.servlet.ServletContextListener;
 
 public class DeploymentConfiguration implements ServletContextListener {
 
-    public static String PU_NAME = "";
+    public static String PU_NAME = "CA3PU";
 
     
     public void contextInitialized(ServletContextEvent sce) {

@@ -28,11 +28,9 @@ import javax.persistence.TemporalType;
 public class XmlFacade {
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
-    //static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public XmlFacade() {
-    }
 
     public String getCurrency() {
         EntityManager em = emf.createEntityManager();
@@ -42,24 +40,26 @@ public class XmlFacade {
         Date now = new Date();
         int hours = now.getHours();
         float min = now.getMinutes();
-        float exact = hours + (min/100);
+        float exact = hours + (min / 100);
         String strDate = dateformat.format(now);
-        System.out.println(exact);
-        System.out.println("today: " + strDate);
-        
+//        System.out.println(exact);
+//        System.out.println("today: " + strDate);
+
         //Returning yesterdays date
         Calendar yesterday = Calendar.getInstance();
         yesterday.add(Calendar.DATE, -1);
         String DateYesterday = dateformat.format(yesterday.getTime());
-        System.out.println("yesterday: " + DateYesterday);
-        
+//        System.out.println("yesterday: " + DateYesterday);
+
         Query query;
-        
-        if(exact > 14.15){
+
+        if (exact > 14.15) {
+             
             query = em.createNativeQuery("SELECT * FROM currency WHERE DATO = " + '"' + strDate + '"', Currency.class);
         } else {
+           
             query = em.createNativeQuery("SELECT * FROM currency WHERE DATO = " + '"' + DateYesterday + '"', Currency.class);
-        }    
+        }
 
         JsonArray jal = new JsonArray();
         List<Currency> datalist = query.getResultList();

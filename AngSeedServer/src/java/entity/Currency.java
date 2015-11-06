@@ -32,7 +32,7 @@ public class Currency implements Serializable {
     private float rate;
     
     @Id
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dato;
 
     public Currency() {
@@ -77,6 +77,9 @@ public class Currency implements Serializable {
     public void setDate(Date dato) {
         this.dato = dato;
     }
+
+    
+    
     
     
 }
