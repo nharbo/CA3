@@ -1,17 +1,67 @@
 <p>Documentation, free for all</p>
 
+Link to github: <a href="https://github.com/hilleer/CA3">Click here!</a>
+
 <uib-accordion>
 
-    <uib-accordion-group heading="Dokumentation af test">
-        <p>Her kommer dokumentation om test</p>
+    <uib-accordion-group heading="Test-strategy and results">
+        <uo>
+            <h3>JUnit test (facade test)</h3><br/>
+            <li>Her kommer dokumentation om test</li>
+            <h3>REST Assured (api test)</h3><br/>
+            <li></li>
+            <h3>Karma/Jasmine test (frontend test)</h3>
+            <li></li>
+        </uo>
+
     </uib-accordion-group>
 
-    <uib-accordion-group heading="Dokumentation af random">
-        <p>Her kommer dokumentation om noget....</p>
+    <uib-accordion-group heading="Who did what?">
+        <uo>
+            <h3>Hvem har lavet hvad?</h3>
+            <uo>
+                <li>Daniel - Forskellige frontend dele, både html og angular, facademetoder, lidt rest, lidt entity klasse</li>
+                <li>Florent - Primært backend arbejde, rest, facade - både xml og user-facaden, entity klasser, test</li>
+                <li>Nicolai - Forskellige frontend dele, både html og angular, lidt i facaden, lidt i rest, security, documentation, deployent</li>
+            </uo>
+            <h3>Amount of studypoints</h3>
+            <uo>
+                <li>Daniel: Max points</li>
+                <li>Florent: Max points</li>
+                <li>Nicolai: Max points</li>
+            </uo>
+            <h3>Strategi for uddeligering af opgaver</h3>
+            <uo>
+                <li>Vi har valgt vores opgaver ud fra hvad vi følte os mest kompetente i, for at nå mest muligt. 
+                    Dette var muligvis et dårligt valg, da vi nok burde have udfordret os selv på vores svagheder. 
+                    Dette må vi se om vi kan gøre i den næste opgave. Vores samarbejde har dog været super godt, 
+                    alt har kørt smooth, og vi har haft kommunikation og samarbejde mellem frontend og backend.
+                    Alt i alt et godt forløb, og en god størrelse af opgaven, som har virket overskuelig, men samtidig udfordrende!</li>
+            </uo>
+        </uo>
     </uib-accordion-group>
 
-    <uib-accordion-group heading="Dokumentation af login">
-        <p>bla bla bla</p>
+    <uib-accordion-group heading="How to test the system">
+        <uo>
+            <h3>Testing via REST Assured</h3>
+
+
+            <li><h3>Test via POSTMAN</h3><br/>
+            <li>GET: http://ca3-nharbo.rhcloud.com/CA3/api/demoadmin/getAllUsers/ <br/> Denne bruges for at få en liste over alle users - dog er kaldet restricted til brugere med rollen Admin.</li>
+            <li>GET: http://ca3-nharbo.rhcloud.com/CA3/api/demouser/getcomp/OPTION/SEARCHTEXT/COUNTRY <br/> Denne bruges til at hente et firma ind fra cvrapi's site. Kaldet er restricted til brugere med rollen User.</li>
+            <li>POST: http://ca3-nharbo.rhcloud.com/CA3/api/unknown/create/USERNAME/PASSWORD <br/> Denne bruges til oprettelse af en bruger. USERNAME er brugernavnet og PASSWORD er det valgte password. Passwordet bliver hashet. Alle kan oprette en bruger, der er derfor ingen restrictions på dette kald.</li>
+            <li>POST: http://ca3-nharbo.rhcloud.com/CA3/api/demoadmin/user/USERNAME <br/> Denne bruges til at slette en user. USERNAME skal erstattes med en given brugers brugernavn. Metoden er resticted til brugere med rollen Admin.</li>
+
+
+            <h3>How to use the webpages that uses the api </h3><br/>
+            <li> Log in as admin (username: admin - password: test) and click the All Users tab. A list of all users will be shown.</li>
+
+            <li>Log in as user (username: user - password test) and click the Company Info tab - for an example, put in "Dong" in the searchfield, select "Navn" in Søgemulighed, and at last select "DK" in Land. Click Slå Op, and a list will appear.</li>
+            <li>Log in as user (username: user - password test) and click the Exchange Rate tab - try and calculate an exchange rate by selecting a country in each dropdown, and type in the amount of money you want converted.</li>
+            <li>Open the website without logging in - click the Registration tab - type in a username and a password, and then try to log in with the selected informations.</li>
+        </uo>
+
+
     </uib-accordion-group>
 
 </uib-accordion>

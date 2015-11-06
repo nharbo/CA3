@@ -26,7 +26,7 @@ angular.module('myApp.view4', ['ngRoute'])
                 cache: true
             }).success(function (response) {
                 $scope.currencies = response;
-
+                console.log(response)
 
                 $scope.currencies.push({code: 'DKK', desc: 'Danske krone', rate: '100'});
 //                $scope.fromCurrency = "EUR";
