@@ -10,9 +10,15 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
 
         .controller('View4Ctrl', function ($http, $scope) {
+
+            $scope.loggedIn = false;
+
             $http.get('api/demouser')
                     .success(function (data, status, headers, config) {
                         $scope.data = data;
+                        if (data.message != "401: You are are not Authenticated - did you log on to the system") {
+                            $scope.loggedIn = true;
+                        }
                     })
                     .error(function (data, status, headers, config) {
 
