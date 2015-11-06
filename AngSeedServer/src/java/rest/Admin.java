@@ -14,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("demoadmin")
-//RolesAllowed("Admin")
+@RolesAllowed("Admin")
 public class Admin {
     
     UserFacade facade = new UserFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
